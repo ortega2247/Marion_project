@@ -13,8 +13,9 @@ KF = 1e-6
 KR = 1e-3
 KC = 1
 
-# Default initial conditions
+# linear proportion to the experimental data (fluorescence i think :S)
 IC = 10000
+lp = 1000
 
 Monomer('RAF', ['state', 'MEK'], {'state': ['I', 'A']})
 Monomer('TGFa', ['EGFR'])
@@ -72,20 +73,20 @@ Parameter('IGF1R_1_0', IC)
 Parameter('IGF1_0_0', IC)
 Parameter('PI3K_0_0', IC)
 Parameter('PI3K_1_0', IC)
-Parameter('p70S6K_0_0', IC)
-Parameter('p70S6K_1_0', IC)
-Parameter('EGFR_0_0', IC)
-Parameter('EGFR_1_0', IC)
-Parameter('IRS1_0_0', IC)
-Parameter('IRS1_1_0', IC)
-Parameter('MEK_0_0', IC)
-Parameter('MEK_1_0', IC)
-Parameter('AKT_0_0', IC)
-Parameter('AKT_1_0', IC)
-Parameter('GSK3_0_0', IC)
-Parameter('GSK3_1_0', IC)
-Parameter('ERK_0_0', IC)
-Parameter('ERK_1_0', IC)
+Parameter('p70S6K_0_0', lp*343.5)
+Parameter('p70S6K_1_0', lp*6000)
+Parameter('EGFR_0_0', lp*75.5)
+Parameter('EGFR_1_0', lp*1000)
+Parameter('IRS1_0_0', lp*93)
+Parameter('IRS1_1_0', lp*2000)
+Parameter('MEK_0_0', lp*904)
+Parameter('MEK_1_0', lp*8000)
+Parameter('AKT_0_0', lp*143.5)
+Parameter('AKT_1_0', lp*15000)
+Parameter('GSK3_0_0', lp*265)
+Parameter('GSK3_1_0', lp*3000)
+Parameter('ERK_0_0', lp*361)
+Parameter('ERK_1_0', lp*6000)
 
 Observable('RAF_0_obs', RAF(state='I', MEK=None))
 Observable('RAF_1_obs', RAF(state='I', MEK=ANY))
