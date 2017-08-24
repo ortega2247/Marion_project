@@ -1,7 +1,0 @@
-Model Description
-
-8 models
-
-egfr and raf feedback included
-autodephosphorylation of all phosphorylated monomers included
-MEK, ERK, AKT have one or two phosphorylation sites, hence the 2^3 = 8 models
