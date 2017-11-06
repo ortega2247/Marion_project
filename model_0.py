@@ -65,7 +65,7 @@ Parameter('ERK_p1_p1_phosphorylation_GSK3_1_1kc', KC)
 Parameter('MEK_p1_p1_phosphorylation_ERK_0_2kf', KF)
 Parameter('MEK_p1_p1_phosphorylation_ERK_0_1kr', KR)
 Parameter('MEK_p1_p1_phosphorylation_ERK_1_1kc', KC)
-Parameter('RAF_0_0', IC)
+Parameter('RAF_0_0', lp*904)
 Parameter('RAF_1_0', IC)
 Parameter('TGFa_0_0', IC)
 Parameter('IGF1R_0_0', IC)
@@ -104,6 +104,7 @@ Observable('PI3K_0_obs', PI3K(state='I', AKT=None))
 Observable('PI3K_1_obs', PI3K(state='I', AKT=ANY))
 Observable('PI3K_2_obs', PI3K(state='A', AKT=None))
 Observable('PI3K_3_obs', PI3K(state='A', AKT=ANY))
+Observable('p70S6K_p_obs', p70S6K( p1_site='u'))
 Observable('p70S6K_0_obs', p70S6K(AKT=None, p1_site='u', ERK=None))
 Observable('p70S6K_1_obs', p70S6K(AKT=None, p1_site='u', ERK=ANY))
 Observable('p70S6K_2_obs', p70S6K(AKT=None, p1_site='p', ERK=None))
@@ -172,6 +173,7 @@ Observable('GSK3_4_obs', GSK3(AKT=ANY, p1_site='u', ERK=None))
 Observable('GSK3_5_obs', GSK3(AKT=ANY, p1_site='u', ERK=ANY))
 Observable('GSK3_6_obs', GSK3(AKT=ANY, p1_site='p', ERK=None))
 Observable('GSK3_7_obs', GSK3(AKT=ANY, p1_site='p', ERK=ANY))
+Observable('ERK_p_obs', ERK(p1_site='p'))
 Observable('ERK_0_obs', ERK(p1_site='p', p70S6K=None, IRS1=None, GSK3=None, MEK=None))
 Observable('ERK_1_obs', ERK(p1_site='p', p70S6K=None, IRS1=None, GSK3=None, MEK=ANY))
 Observable('ERK_2_obs', ERK(p1_site='p', p70S6K=None, IRS1=None, GSK3=ANY, MEK=None))
@@ -253,10 +255,16 @@ Initial(GSK3(AKT=None, p1_site='p', ERK=None), GSK3_1_0)
 Initial(ERK(p1_site='p', p70S6K=None, IRS1=None, GSK3=None, MEK=None), ERK_0_0)
 Initial(ERK(p1_site='u', p70S6K=None, IRS1=None, GSK3=None, MEK=None), ERK_1_0)
 
-t = np.linspace(0,30, 1001)
-solve_mod = Solver(model, t)
-solve_mod.run()
-
-import matplotlib.pyplot as plt
-
-plt.plot(t, solve_mod.result.all['__s15'])
+# t_data = [0, 60, 90, 120]
+# ntimes = len(t_data)
+# tmul = 10
+# tspan = np.linspace(t_data[0], t_data[-1],
+#                     (ntimes-1) * tmul + 1)
+#
+# solve_mod = Solver(model, tspan)
+# solve_mod.run()
+#
+# import matplotlib.pyplot as plt
+#
+# plt.plot(tspan, solve_mod.result.all['ERK_p_obs'])
+# plt.show()
